@@ -9,6 +9,8 @@ call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
+Plugin 'powerline/powerline-fonts'
+
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
@@ -16,6 +18,8 @@ Plugin 'gmarik/Vundle.vim'
 " used Bundle instead of Plugin)
 
 " ...
+
+" set ambiwidth=double
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -56,6 +60,8 @@ vnoremap <F9> zf
 " Plugin 'vim-scripts/indentpython.vim'
 
 set encoding=utf-8
+set fileencoding=utf-8
+" scriptencoding utf-8
 
 " Autocomplete
 " Bundle 'Valloric/YouCompleteMe'
@@ -143,7 +149,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'jistr/vim-nerdtree-tabs'
 
 " Tags
-" Needs sudo apt-get install exuberant-ctags
+" Needs sudo apt-get install exuberant-ctags (or ctags for other distros.)
 Plugin 'majutsushi/tagbar'
 Plugin 'szw/vim-tags'
 
@@ -168,22 +174,32 @@ let g:lightline = {
   \   'colorscheme': 'jellybeans',
   \   'active': {
   \     'left':[ [ 'mode', 'paste' ],
-  \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-  \     ]
+  \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]],
+  \     'right': [ [ 'lineinfo' ],
+  \              [ 'percent' ],
+  \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ]]
   \   },
-	\   'component': {
-	\     'lineinfo': ' %3l:%-2v',
-	\   },
+  \   'component': {
+  \     'charvaluehex': '0x%2B',
+  \     'lineinfo': ' %3l:%-2v',
+  \   },
   \   'component_function': {
   \     'gitbranch': 'fugitive#head',
-  \   }
+  \   },
   \ }
 let g:lightline.separator = {
-	\   'left': '', 'right': ''
-  \}
+ 	\   'left': '', 'right': ''
+ \}
 let g:lightline.subseparator = {
 	\   'left': '', 'right': '' 
   \}
+
+" let g:lightline.separator = { 'left': "\ue0b0", 'right': "\ue0b2" }
+" let g:lightline.subseparator = { 'left': "\ue0b1", 'right': "\ue0b3" }
+
+"      \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
+"     \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" },
+
 
 "let g:lightline.tabline = {
 "  \   'left': [ ['tabs'] ],
@@ -198,7 +214,7 @@ let g:lightline.component_type   = {'buffers': 'tabsel'}
 let g:lightline#bufferline#show_number  = 1
 let g:lightline#bufferline#shorten_path = 0
 let g:lightline#bufferline#unnamed      = '[No Name]'
-set guioptions-=e
+" set guioptions-=e
 nnoremap <F7> :bnext<CR>
 nnoremap <F6> :bprev<CR>
 " Autoclose brackets, parens, etc.
@@ -240,24 +256,26 @@ let g:easyescape_chars = { "j": 1, "k": 1 }
 let g:easyescape_timeout = 100
 " let g:easyescape_timeout = 2000
 cnoremap jk <ESC>
-cnoremap kj <ESC> }
+cnoremap kj <ESC>
 
 " :imap jj <Esc>
 
 " Syntax checking, highlighting, etc. for Python
 " Rope autocomplete, etc. needs the .ropeproject directory
 Plugin 'python-mode/python-mode'
-let g:pymode_lint_cwindow = 0
+let g:pymode_lint_cwindow = 1
 "let g:pymode_lint_checkers = []
 
 let g:pymode_lint_checkers = ['pylint', 'pyflakes', 'mccabe', 'pep8', 'pep257']
-let g:pymode_lint_ignore = ["D212", "D400"]
+let g:pymode_lint_ignore = ["D212", "D400", "D203", "D205"]
 let g:pymode_folding = 0
 let g:pymode_rope = 0
 let g:pymode_lint_signs = 1
 let g:pymode_lint_on_fly = 0
 let g:pymode_lint_error_symbol = '>>'
 let g:pymode_lint_unmodified = 1
+let g:pymode_quickfix_minheight = 3
+let g:pymode_quickfix_maxheight = 4
 
 " Supertab for auto complete
 Plugin 'ervandew/supertab'
@@ -290,3 +308,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 3
 let g:indent_guides_enable_on_vim_startup = 1
+
+" Font
+"set guifont=Source\ Code\ Pro\ for\ Powerline:h16 
+"set guifont=Meslo\ for\ Powerline
