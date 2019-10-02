@@ -262,20 +262,56 @@ cnoremap kj <ESC>
 
 " Syntax checking, highlighting, etc. for Python
 " Rope autocomplete, etc. needs the .ropeproject directory
-Plugin 'python-mode/python-mode'
-let g:pymode_lint_cwindow = 1
-"let g:pymode_lint_checkers = []
+" Plugin 'python-mode/python-mode'
+" let g:pymode_lint_cwindow = 1
 
-let g:pymode_lint_checkers = ['pylint', 'pyflakes', 'mccabe', 'pep8', 'pep257']
-let g:pymode_lint_ignore = ["D212", "D400", "D203", "D205"]
-let g:pymode_folding = 0
-let g:pymode_rope = 0
-let g:pymode_lint_signs = 1
-let g:pymode_lint_on_fly = 0
-let g:pymode_lint_error_symbol = '>>'
-let g:pymode_lint_unmodified = 1
-let g:pymode_quickfix_minheight = 3
-let g:pymode_quickfix_maxheight = 4
+"let g:pymode_lint_checkers = ['pylint', 'pyflakes', 'mccabe', 'pep8', 'pep257']
+"let g:pymode_lint_ignore = ["D212", "D400", "D203", "D205"]
+"let g:pymode_folding = 0
+"let g:pymode_rope = 0
+"let g:pymode_lint_signs = 1
+"let g:pymode_lint_on_fly = 0
+"let g:pymode_lint_error_symbol = '>>'
+"let g:pymode_lint_unmodified = 1
+"let g:pymode_quickfix_minheight = 3
+"let g:pymode_quickfix_maxheight = 4
+
+" Plugin 'fisadev/vim-isort'
+
+" let g:vim_isort_python_version = 'python3'
+
+Plugin 'dense-analysis/ale'
+
+let g:ale_linters={
+\    'python'     : ['flake8', 'pyls', 'pylint', 'pyflakes', 'pydocstyle', 'pycodestyle'],
+\    'json'       : ['jsonlint'],
+\    'javascript' : ['eslint'],
+\    'cpp'        : ['clang', 'flawfinder'],
+\    'c'          : ['clang', 'flawfinder'],
+\    'pyrex'      : ['cython'],
+\    'cmake'      : ['cmakelint'],
+\    'sh'         : ['shellcheck'],
+\    'vim'        : ['vint'],
+\}
+let g:ale_fixers={
+\    'javascript': ['prettier_eslint'],
+\    'python'    : ['autopep8', 'isort', 'remove_trailing_lines', 'trim_whitespace', 'yapf'],
+\}
+
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_fix_on_save = 1
+let g:ale_linters_explicit = 1
+
+" configure python-language-server through vim-lsp so it can be used by ale
+" tsserver for typescript
+if executable('typescript-language-server')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server', '--stdio']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+        \ 'whitelist': ['typescript'],
+        \ })
+endif
 
 " Supertab for auto complete
 Plugin 'ervandew/supertab'
