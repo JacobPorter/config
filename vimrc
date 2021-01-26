@@ -83,7 +83,7 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "EOF
 
 " Work with anaconda environments
-Plugin 'cjrh/vim-conda'
+" Plugin 'cjrh/vim-conda'
 
 " You can have VIM check your syntax on each save with the syntastic extension
 " syntastic is very slow with pylint.  Use python-mode or ALE (ALE uses VIM 8)
@@ -181,18 +181,22 @@ let g:lightline = {
   \   },
   \   'component': {
   \     'charvaluehex': '0x%2B',
-  \     'lineinfo': ' %3l:%-2v',
+  \     'lineinfo': '%3l:%-2v',
   \   },
   \   'component_function': {
   \     'gitbranch': 'fugitive#head',
   \   },
   \ }
-let g:lightline.separator = {
- 	\   'left': '', 'right': ''
- \}
-let g:lightline.subseparator = {
-	\   'left': '', 'right': '' 
-  \}
+"let g:lightline.separator = {
+" 	\   'left': '', 'right': ''
+" \}
+"let g:lightline.subseparator = {
+"	\   'left': '', 'right': '' 
+" \}
+
+let g:lightline.separator = { 'left': "|", 'right': "|" }
+let g:lightline.subseparator = { 'left': "|", 'right': "|" }
+
 
 " let g:lightline.separator = { 'left': "\ue0b0", 'right': "\ue0b2" }
 " let g:lightline.subseparator = { 'left': "\ue0b1", 'right': "\ue0b3" }
@@ -283,7 +287,7 @@ cnoremap kj <ESC>
 Plugin 'dense-analysis/ale'
 
 let g:ale_linters={
-\    'python'     : ['flake8', 'pyls', 'pylint', 'pyflakes', 'pydocstyle', 'pycodestyle'],
+\    'python'     : ['flake8', 'pyls', 'pylint', 'pyflakes', 'pydocstyle', 'pycodestyle'], 
 \    'json'       : ['jsonlint'],
 \    'javascript' : ['eslint'],
 \    'cpp'        : ['clang', 'flawfinder'],
@@ -295,9 +299,10 @@ let g:ale_linters={
 \}
 let g:ale_fixers={
 \    'javascript': ['prettier_eslint'],
-\    'python'    : ['autopep8', 'isort', 'remove_trailing_lines', 'trim_whitespace', 'yapf'],
+\    'python'    : ['autopep8', 'isort', 'remove_trailing_lines', 'trim_whitespace', 'black'],
 \}
 
+" yapf
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
