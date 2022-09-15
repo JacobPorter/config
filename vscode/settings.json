@@ -1,0 +1,30 @@
+{
+    "workbench.colorTheme": "Jellybeans Theme",
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.snippetSuggestions": "top",
+    "ShortcutMenuBar.commentLine": true,
+    "ShortcutMenuBar.save": true,
+    "ShortcutMenuBar.undo": true,
+    "ShortcutMenuBar.navigateBack": false,
+    "ShortcutMenuBar.navigateForward": false,
+    "ShortcutMenuBar.toggleRenderWhitespace": true,
+    "editor.renderWhitespace": "none",
+    "gitlens.currentLine.enabled": false,
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.defaultTimeFormat": "HH:MM",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "editor.formatOnSave": true,
+    "python.formatting.provider": "black",
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "ShortcutMenuBar.beautify": false,
+    "ShortcutMenuBar.openFilesList": false,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    }
+}

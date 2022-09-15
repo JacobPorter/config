@@ -1,0 +1,73 @@
+
+https://addons.mozilla.org/en-US/firefox/addon/tree-style-tab/
+
+Hide the Default Top Tab Bar
+
+It is possible to hide Firefox's top tab bar by adding a snippet of CSS to the userChrome.css (docs: http://kb.mozillazine.org/index.php?title=UserChrome.css&printable=yes) file in the Firefox profile directory. The top tab bar is redundant when using the Tree Style Tabs extension. In order to add the CSS snippet, we need to find the Firefox profile folder, navigate to the chrome folder, and add the snippet to a file called userChrome.css
+Find the Firefox Profile Directory
+
+Consult these docs to find the Firefox profile directory on your operating system: http://kb.mozillazine.org/Profile_folder_-_Firefox#Mac.
+Mac
+
+~/Library/Application Support/Firefox/Profiles/wvghmg59.default
+Linux
+
+~/.mozilla/firefox/profile
+Create chrome Directory (If Not Present)
+
+I did not have a chrome directory, so I created one according the the Mozilla documentation.
+
+mkdir chrome
+cd chrome
+
+Create the userChrome.css File (If Not Present)
+
+Create a file called userChrome.css in the chrome directory, and add the following snippet:
+
+/* Hide tab bar in FF Quantum */
+@-moz-document url("chrome://browser/content/browser.xul") {
+  #TabsToolbar {
+    visibility: collapse !important;
+    margin-bottom: 21px !important;
+  }
+
+  #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+    visibility: collapse !important;
+  }
+}
+
+Save the file and restart your Firefox instance to test and ensure the style changes have been applied successfully.
+Adjust Tree Style Tabs Layout to be More Compact
+
+Add a second snippet to make the default Tree Style Tabs pane tab listings more compact:
+
+/* Compact tab layout */
+:root { --tab-height: 20px !important; }
+.tab { height: 20px !important; }
+/* Shrink space between pinned tabs and tab bar, only when pins are present */
+#tabbar[style*="margin"] { margin-top: 20px !important; }
+
+/* Show title of unread tabs with red font */
+.tab.unread .label {
+  color: red !important;
+}
+
+/* Add private browsing indicator per tab */
+.tab.private-browsing .label:before {
+  content: " ";
+}
+
+Misc. Helpful Links
+
+    Various custom styling tips: https://github.com/piroor/treestyletab/wiki/Code-snippets-for-custom-style-rules#auto-showhide-sidebar-by-mouseover-hover
+
+2019/12/04 Update - userChrome.css Styles No Longer Enabled by Default
+
+Apparently as of Firefox 69.0, the userChrome.css is no longer applied by default (thanks Mozilla). According to this ghacks post one must enable the following setting for the userChrome.css styles to take effect:
+
+        Load about:config in the Firefox address bar
+        Confirm that you will be careful
+        Search for toolkit.legacyUserProfileCustomizations.stylesheets
+        Set the value to True
+
+
