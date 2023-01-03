@@ -1,0 +1,23 @@
+Dev Containers
+ESLint
+GitLens -- Git supercharged
+Go
+isort
+Jellybeans Theme
+Jupyter
+Jupyter Cell Tags
+Jupyter Keymap
+Jupyter Notebook Renderers
+Jupyter Slide Show
+Makefile Tools
+Perl
+Pylance
+Python
+R
+Remote - SSH
+Remote - SSH: Editing Configuration Files
+Remote Development
+Remote Explorer
+Shortcut Menu Bar
+Windows Default Keybindings
+WSL
