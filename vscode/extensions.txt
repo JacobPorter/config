@@ -19,5 +19,6 @@ Remote - SSH: Editing Configuration Files
 Remote Development
 Remote Explorer
 Shortcut Menu Bar
+Sync Settings
 Windows Default Keybindings
 WSL
